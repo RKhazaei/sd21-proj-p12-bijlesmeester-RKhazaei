@@ -23,6 +23,7 @@
         <input type="hidden" name="_csrf_token"
                value="{{ csrf_token('authenticate') }}"
         >
+        <input type="hidden" name="_target_path" value="/redirect">
 
         {#
             Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
@@ -36,10 +37,10 @@
         #}
 
 
-        <a href="{{ path('app_home')}}">
+
             <button class="btn btn-lg btn-primary" type="submit">
                 Sign in
             </button>
-        </a>
+
     </form>
 {% endblock %}
