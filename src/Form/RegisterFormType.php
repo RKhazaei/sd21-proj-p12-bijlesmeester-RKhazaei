@@ -31,11 +31,11 @@ class RegisterFormType extends AbstractType
                     'mavo' => '2'
                 ]
             ])
-//            ->add('date_of_birth', null, [
-//                'widget' => 'single_text',
-//            ])
+            ->add('date_of_birth', null, [
+                'widget' => 'single_text',
+            ])
 //            ->add('iban')
-//            ->add('subject')
+            ->add('subject')
             ->add('save', SubmitType::class)
         ;
     }

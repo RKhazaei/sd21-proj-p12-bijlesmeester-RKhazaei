@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row mt-4 mb-5">
+            {% for category in categories %}
+                <div class="col-md-2 text-center" >
+                    <div class="card border-0">
+                        <h3 class="text-center">
+                            {{ category.name }}
+                        </h3>
+                        <img src="/img/{{ category.img }}" class="img img-fluid rounded" alt="Responsive image">
+                        <div class="card-body">
+                            <h4 class="text-center">
+{#                                {{ category.description }}#}
+                            </h4>
+                            <a class="btn btn-primary rowcolor text-center" href="{{ path('app_products', {id: category.id}) }}">volgende</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+

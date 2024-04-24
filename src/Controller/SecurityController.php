@@ -42,7 +42,10 @@ class SecurityController extends AbstractController
     #[Route(path: '/redirect', name: 'redirect')]
     public function redirectAction(Security $security) {
         if ($security->isGranted('ROLE_ADMIN')) { return $this->redirectToRoute('app_login');}
+        if ($security->isGranted('ROLE_STUDENT')) { return $this->redirectToRoute('app_student');}
         if ($security->isGranted('ROLE_TEACHER')) { return $this->redirectToRoute('app_home_teacher'); }
 
-            return $this->redirectToRoute('app_login'); }
+            return $this->redirectToRoute('app_login');
+    }
+
 }
