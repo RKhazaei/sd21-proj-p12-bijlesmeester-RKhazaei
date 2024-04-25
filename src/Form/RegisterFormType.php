@@ -35,7 +35,7 @@ class RegisterFormType extends AbstractType
                 'widget' => 'single_text',
             ])
 //            ->add('iban')
-            ->add('subject')
+//            ->add('subject')
             ->add('save', SubmitType::class)
         ;
     }

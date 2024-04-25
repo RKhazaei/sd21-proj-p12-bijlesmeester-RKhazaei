@@ -40,6 +40,9 @@ class Lesson
     #[ORM\JoinColumn(nullable: false)]
     private ?User $teacher = null;
 
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $date = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -137,6 +140,18 @@ class Lesson
     public function setTeacher(?User $teacher): static
     {
         $this->teacher = $teacher;
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): static
+    {
+        $this->date = $date;
 
         return $this;
     }

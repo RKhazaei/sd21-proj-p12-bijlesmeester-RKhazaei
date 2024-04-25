@@ -1,21 +1,33 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">lesson</th>
+            <th scope="col">Time</th>
+            <th scope="col">date</th>
+            <th scope="col">Location</th>
+            <th scope="col">duration</th>
+            <th scope="col">delete</th>
+            <th scope="col">update</th>
 
-<div>
-    <p>
-        ur logged in as teacher!
-    </p>
-</div>
-{#    {% if app.user %}#}
-{#        <div class="mb-3">#}
-{#            You are logged in as {{ app.user.userIdentifier }},#}
-{#        </div>#}
-{#    {% endif %}#}
-{#    <a href="{{ path('app_logout') }}">Logout</a>#}
-{#{% endblock %}#}
-
-{#{% block title %}#}
-
+        </tr>
+        </thead>
+        <tbody>
+        {% for lesson in lessons %}
+            <tr>
+                <td>{{ lesson.subject }}</td>
+                <td>{{ lesson.time|date('H:i:s') }}</td>
+                <td>{{ lesson.date|date('d/m/y') }}</td>
+                <td>{{ lesson.location }}</td>
+                <td>{{ lesson.duration }}</td>
+                <td><a class="btn btn-danger rowcolor text-center" href="{{ path('app_delete_lesson',{id: lesson.id}) }}">delete</a></td>
+                <td><a class="btn btn-warning rowcolor text-center" href="{{ path('app_update_lesson',{id: lesson.id}) }}">update</a></td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+            <a class="btn btn-primary rowcolor text-center" href="{{ path('app_add_lesson') }}">volgende</a>
 {% endblock %}
 

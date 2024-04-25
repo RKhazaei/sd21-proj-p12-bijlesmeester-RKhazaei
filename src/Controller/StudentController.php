@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Category;
+use App\Entity\Lesson;
 use App\Entity\Product;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -52,6 +53,17 @@ class StudentController extends AbstractController
         ]);
     }
 
+    #[Route('/lessons', name: 'app_lessons')]
+    public function lessons(EntityManagerInterface $em): Response
+    {
+
+        $lesson = $em->getRepository(Lesson::class)->findAll();
+
+
+        return $this->render('student/Lessons.html.twig', [
+            'lessons' => $lesson,
+        ]);
+    }
 
 
 }
