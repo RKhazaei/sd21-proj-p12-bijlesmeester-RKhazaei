@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 24 apr 2024 om 15:20
+-- Gegenereerd op: 25 apr 2024 om 12:56
 -- Serverversie: 10.4.32-MariaDB
 -- PHP-versie: 8.2.12
 
@@ -62,7 +62,8 @@ CREATE TABLE `doctrine_migration_versions` (
 --
 
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
-('DoctrineMigrations\\Version20240418093755', '2024-04-24 09:23:36', 1081);
+('DoctrineMigrations\\Version20240418093755', '2024-04-24 09:23:36', 1081),
+('DoctrineMigrations\\Version20240425081830', '2024-04-25 10:18:36', 14);
 
 -- --------------------------------------------------------
 
@@ -80,8 +81,16 @@ CREATE TABLE `lesson` (
   `subject` varchar(255) NOT NULL,
   `objective` varchar(255) DEFAULT NULL,
   `comments` varchar(255) DEFAULT NULL,
-  `duration` varchar(255) NOT NULL
+  `duration` varchar(255) NOT NULL,
+  `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `lesson`
+--
+
+INSERT INTO `lesson` (`id`, `student_id`, `teacher_id`, `time`, `location`, `subject`, `objective`, `comments`, `duration`, `date`) VALUES
+(5, 2, 1, '12:00:00', 'brassers', 'Engels', 'huiswerk afmaken', 'geen', '2 uur', '2024-05-04');
 
 -- --------------------------------------------------------
 
@@ -199,7 +208,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `email`, `roles`, `password`, `firstname`, `lastname`, `adress`, `zipcode`, `city`, `date_of_birth`, `iban`, `subject`, `level`) VALUES
 (1, 'naruto@gmail.com', '[\"ROLE_TEACHER\"]', '$2y$13$.U383ShOzALsDTp7Pl4CZ.cKjPOEu834YUPP6BEtqrsEADb1kIFfO', 'Naruto', 'uzumaki', 'hidden leaf village', '1551 RB', 'Hidden Leaf', '2004-05-06', '1324354567ING', 'Wiskunde', 'Havo'),
 (2, 'bo3nederland@gmail.com', '[\"ROLE_STUDENT\"]', '$2y$13$Zs0gfWK8Q.oO1/yU54RTNOT.Oq28oirbg2Ll0dmHfM8Vm1y30TKbq', 'Reza', 'Khazaei', 'albert 45', '2552 WB', 'DenHaag', '2004-05-06', NULL, 'Wiskunde', '1'),
-(3, 'admin@gmail.com', '[\"ROLE_ADMIN\"]', '$2y$13$h/dcHEzL0FjDJl9JghmK6.yECfdCxwNFfm8eQZZEf1s7ULYp1jmd.', 'Anouk', 'Huisman', 'het palet 1', '9112 AS', 'Assen', '2006-05-04', NULL, NULL, NULL);
+(3, 'admin@gmail.com', '[\"ROLE_ADMIN\"]', '$2y$13$h/dcHEzL0FjDJl9JghmK6.yECfdCxwNFfm8eQZZEf1s7ULYp1jmd.', 'Anouk', 'Huisman', 'het palet 1', '9112 AS', 'Assen', '2006-05-04', NULL, NULL, NULL),
+(4, 'mikementzer@gmail.com', '[\"ROLE_STUDENT\"]', '$2y$13$b50.w0o9HoOmN7TihrvQjuDn0AHXXf6TvyTv1UOMjLiD7hwzPvOyS', 'Mike', 'Metzer', 'calif', '5412DA', 'LA', '1974-05-25', NULL, NULL, '1');
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -284,7 +294,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT voor een tabel `lesson`
 --
 ALTER TABLE `lesson`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT voor een tabel `messenger_messages`
@@ -320,7 +330,7 @@ ALTER TABLE `purchaseline`
 -- AUTO_INCREMENT voor een tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Beperkingen voor geëxporteerde tabellen
