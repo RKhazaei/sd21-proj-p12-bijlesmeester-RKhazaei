@@ -8,15 +8,19 @@
                     <div class="card border-0">
                         <h3 class="text-center">
                             {{ product.name }}
+
                         </h3>
+                        {{ product.price }}
+                        <br>
+                        {{ product.description }}
                         {#                        <img src="/img/{{ product.img }}" class="img img-fluid rounded" alt="Responsive image">#}
                         <div class="card-body">
                             <h4 class="text-center">
 
                             </h4>
-                            <a class="btn btn-primary rowcolor text-center" href="#">kopen</a>
                         </div>
                     </div>
+                    {{ form(form) }}
                 </div>
         </div>
     </div>
