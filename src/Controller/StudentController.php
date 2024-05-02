@@ -64,6 +64,16 @@ class StudentController extends AbstractController
             'lessons' => $lesson,
         ]);
     }
+    #[Route('/order',name:'app_order')]
+    public function getProducts(EntityManagerInterface $em): Response
+    {
+        $products=$em->getRepository(Product::class)->findAll();
+        
+
+        return $this->render('student/order.html.twig',[
+            'products'=>$products
+        ]);
+    }
 
 
 }
