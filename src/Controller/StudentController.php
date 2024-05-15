@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Category;
 use App\Entity\Lesson;
 use App\Entity\Product;
+use App\Entity\Purchase;
+use App\Entity\Purchaseline;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -61,7 +63,7 @@ class StudentController extends AbstractController
 
         $session=$request->getSession();
         $form->handleRequest($request);
-        if($form->isSubmitted() ) {
+        if($form->isSubmitted() && $form->isValid() ) {
             //als de variabele order in de sesion array niet bestaat maak deze aan
             if(!$session->get('order')) {
                 $session->set('order',[]);
@@ -71,13 +73,35 @@ class StudentController extends AbstractController
             $order=$session->get('order');
             $order[]=[$id,$amount];
             $session->set('order',$order);
-
             $this->addFlash('success','product toegevoegd!');
-            return $this->redirectToRoute('app_order');
+            return $this->redirectToRoute('app_purchaseline');
         }
         return $this->render('student/product.html.twig',[
             'product'=>$product,
             'form'=>$form
+        ]);
+    }
+
+    #[Route('/purchaseline', name: 'app_purchaseline')]
+    public function purchaseline(EntityManagerInterface $em,Request $request): Response
+    {
+        $order = $request->getSession()->get('order');
+        if (!$order) {
+            $this->addFlash('danger', 'je hebt geen producten');
+        }
+            $purchaseLines = [];
+            foreach ($order as $orderLine) {
+                $purchaseLine = new Purchaseline();
+                $product = $em->getRepository(Product::class)->find($orderLine[0]);
+                $purchaseLine->setProduct($product);
+                $purchaseLine->setAmount($orderLine[1]);
+                $purchaseLines [] = $purchaseLine;
+            }
+
+
+//        dd($purchaseLines);
+        return $this->render('student/order.html.twig', [
+            'purchaseLines' => $purchaseLines
         ]);
     }
 

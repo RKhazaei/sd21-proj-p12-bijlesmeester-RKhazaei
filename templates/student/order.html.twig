@@ -1,10 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
+
+
+   {% block body %}
+       <table class="table">
+           <thead>
+           <tr>
+               <th scope="col">amount</th>
+               <th scope="col">price</th>
+
+           </tr>
+           </thead>
+           <tbody>
+           {% set total = 0 %}
+           {% for purchase in purchaseLines %}
+               <tr>
+                   <td>{{ purchase.amount }}</td>
+                   <td>{{ purchase.product.price }}</td>
+                   {% set total = total + purchase.product.price* purchase.amount %}
+
+               </tr>
+           {% endfor %}
+           <tr>
+               <td>
+                   <p> Total: {{ total |number_format(2,',', '.') }}</p>
+               </td>
+           </tr>
+           </tbody>
+       </table>
+
 
 {% endblock %}
 
-{% block title %}
-
-{% endblock %}
 
