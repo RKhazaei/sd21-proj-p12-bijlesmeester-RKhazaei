@@ -1,7 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <table class="table">
+<div class="container">
+    <table class="table mt-5">
         <thead>
         <tr>
             <th scope="col">lesson</th>
@@ -29,5 +30,6 @@
         {% endfor %}
     </table>
             <a class="btn btn-primary rowcolor text-center" href="{{ path('app_add_lesson') }}">volgende</a>
+</div>
 {% endblock %}
 

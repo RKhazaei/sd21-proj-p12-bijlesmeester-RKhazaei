@@ -19,10 +19,11 @@ use Symfony\Component\Routing\Attribute\Route;
 class StudentController extends AbstractController
 {
     #[Route('/login', name: 'app_student')]
-    public function index(): Response
+    public function index(EntityManagerInterface $em): Response
     {
+        $lesson = $em->getRepository(Lesson::class)->findAll();
         return $this->render('student/index.html.twig', [
-            'controller_name' => 'StudentController',
+            'lessons' => $lesson,
         ]);
     }
 

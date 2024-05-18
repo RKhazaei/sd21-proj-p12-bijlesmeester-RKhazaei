@@ -10,10 +10,26 @@
 
 <div class="example-wrapper">
     <h1>Hello STUDENT!</h1>
+    <table class="table mt-5">
+        <th>subject</th>
+        <th>time</th>
+        <th>date</th>
+        <th>location</th>
+        <th>duration</th>
+        <th>student</th>
+    {% for lesson in lessons %}
+        <tr>
+            <td>{{ lesson.subject }}</td>
+            <td>{{ lesson.time|date('H:i:s') }}</td>
+            <td>{{ lesson.date|date('d/m/y') }}</td>
+            <td>{{ lesson.location }}</td>
+            <td>{{ lesson.duration }}</td>
+            <td>{{ lesson.student.firstname }}</td>
 
 
-    <ul>
-
-    </ul>
+        </tr>
+        </tbody>
+    {% endfor %}
+    </table>
 </div>
 {% endblock %}
