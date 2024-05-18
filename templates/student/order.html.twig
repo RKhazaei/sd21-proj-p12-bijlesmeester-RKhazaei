@@ -7,6 +7,7 @@
            <thead>
            <tr>
                <th scope="col">amount</th>
+               <th scope="col">item</th>
                <th scope="col">price</th>
 
            </tr>
@@ -16,6 +17,7 @@
            {% for purchase in purchaseLines %}
                <tr>
                    <td>{{ purchase.amount }}</td>
+                   <td>{{ purchase.product.name }}</td>
                    <td>{{ purchase.product.price }}</td>
                    {% set total = total + purchase.product.price* purchase.amount %}
 
